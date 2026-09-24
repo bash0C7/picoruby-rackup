@@ -51,13 +51,16 @@ handler.run(app, Host: "127.0.0.1", Port: 8080) { |server| ... }
 | `Rackup::Handler.get(name)` | Returns the registered class, or `nil` if `name` is `nil` or unregistered |
 | `Rackup::Handler.pick(names)` | Takes a name or an Array of names, returns the first registered match; raises `LoadError` if none match (same as CRuby) |
 
-## Where this is tested
+## Testing
 
-This gem doesn't (yet) carry its own test suite. Its behavior is exercised
-via [bash0C7/bash0c7-homepage](https://github.com/bash0C7/bash0c7-homepage)'s
-`test/picoruby/rackup_handler_test.rb`, where it backs a self-hosted
-[Sinatra](https://github.com/udzura/picoruby-sinatra-covers) admin console
-together with [picobrick](https://github.com/bash0C7/picobrick).
+```
+rake test
+```
+
+Fetches and builds a PicoRuby VM into `vendor/` (git-ignored, not pinned
+to any particular version) on first run, then runs `test/` against it
+with [picoruby-picotest](https://github.com/picoruby/picoruby/tree/master/mrbgems/picoruby-picotest).
+`rake clean` removes `vendor/`; `rake clean_test` runs both in sequence.
 
 ## License
 
